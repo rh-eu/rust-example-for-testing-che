@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "name": "rust-example"
+  },
+  "projects": [
+    {
+      "name": "rust-example-for-testing-che",
+      "source": {
+        "location": "https://github.com/rh-eu/rust-example-for-testing-che.git",
+        "type": "git",
+        "branch": "master"
+      }
+    }
+  ],
+  "components": [
+    {
+      "mountSources": true,
+      "memoryLimit": "512Mi",
+      "type": "dockerimage",
+      "image": "quay.io/eclipse/che-rust-1.39:7.18.0",
+      "alias": "rust"
+    }
+  ],
+  "apiVersion": "1.0.0",
+  "commands": [
+    {
+      "name": "build",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/rust-example-for-testing-che",
+          "type": "exec",
+          "command": "cargo build",
+          "component": "rust"
+        }
+      ]
+    },
+    {
+      "name": "run",
+      "actions": [
+        {
+          "workdir": "${CHE_PROJECTS_ROOT}/rust-example-for-testing-che",
+          "type": "exec",
+          "command": "cargo run",
+          "component": "rust"
+        }
+      ]
+    }
+  ]
+}
